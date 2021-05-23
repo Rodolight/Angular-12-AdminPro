@@ -5,14 +5,18 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graphic1Component } from './graphic1/graphic1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent, children: [
         
-        {path: '', component: DashboardComponent},
-        {path: 'progress', component: ProgressComponent},
-        {path: 'graphic1', component: Graphic1Component},
-        {path: 'account-setting', component: AccountSettingsComponent},
+        {path: '', component: DashboardComponent, data:{title:'Dashboard'}},
+        {path: 'progress', component: ProgressComponent, data:{title:'ProgressBar'}},
+        {path: 'graphic1', component: Graphic1Component, data:{title:'Gráfica 1'}},
+        {path: 'promises', component: PromisesComponent, data:{title:'Promesas'}},
+        {path: 'account-setting', component: AccountSettingsComponent, data:{title:'Tema'}},
+        {path: 'rxjs', component: RxjsComponent , data:{title:'Rxjs'}},
         ]
     },
   
