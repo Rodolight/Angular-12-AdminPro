@@ -7,6 +7,18 @@
     animation-fill-mode: both
 }
 
-#themecolors .selector {
+#themecolors .selector,
+.cursor {
     cursor: pointer;
 }
+
+#google-btn {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* span[id^=not_signed_]::backdrop {
+    content: 'Hola';
+} */
