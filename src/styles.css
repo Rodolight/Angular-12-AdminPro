@@ -18,7 +18,13 @@
     justify-content: center;
 }
 
+.img-avatar {
+    width: 160px;
+    height: 160px;
+}
 
-/* span[id^=not_signed_]::backdrop {
-    content: 'Hola';
-} */
+.image-upload {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+}

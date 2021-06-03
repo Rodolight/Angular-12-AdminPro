@@ -8,6 +8,7 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { loginForm } from '../interfaces/login-form.interface';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 const base_url = environment.base_url
 declare const gapi: any;
@@ -18,6 +19,7 @@ declare const gapi: any;
 export class UserService {
 
   public auth2: any;
+  public user!: User;
 
   constructor(private http: HttpClient,
               private router : Router,
@@ -25,16 +27,24 @@ export class UserService {
                 this.googleInit();
               }
 
+  get token (): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.user.uid || '';
+  }
+
   validateToken() : Observable<boolean> {
 
-    const token = localStorage.getItem('token') || '';
-
-    return this.http.get(`${ base_url }/login/renew`, { headers: {'x-token': token }})
+    return this.http.get(`${ base_url }/login/renew`, { headers: {'x-token': this.token }})
     .pipe(
-      tap((resp:any) =>{
-        localStorage.setItem('token', resp.token);
+      map((resp:any) =>{
+       const { name,email,img,role,google, uid } = resp.user;
+       this.user = new User(name,email,'',img,role,google,uid);
+       localStorage.setItem('token', resp.token);
+       return true
     }), 
-    map(resp => true),
     catchError(err => of(false)));
 
   }
@@ -48,6 +58,11 @@ export class UserService {
       })
     )
     
+  }
+
+  updateProfile(data: { name: string, email: string, role: string}){
+    data = {...data, role: this.user.role! };
+    return this.http.put(`${ base_url}/users/${ this.uid }`, data, { headers: {'x-token': this.token }})
   }
 
   login(formData: loginForm){
