@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
-import { tap, map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { tap, map, catchError, delay } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { loginForm } from '../interfaces/login-form.interface';
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { LoadUsers } from '../interfaces/load-users.interfaces';
+
 import { User } from '../models/user.model';
 
 const base_url = environment.base_url
@@ -33,6 +36,10 @@ export class UserService {
 
   get uid(): string {
     return this.user.uid || '';
+  }
+
+  get headears(){
+      return { headers: {'x-token': this.token }}
   }
 
   validateToken() : Observable<boolean> {
@@ -106,4 +113,33 @@ export class UserService {
     });
   }
 
+loadUsers(fromValue?: number, limit?: number){
+
+    const url =`${ base_url }/users?from=${fromValue}&top=${limit}`
+
+    return  this.http.get<LoadUsers>(url, this.headears).pipe(
+      map( resp => {
+        const users = resp.users.map( 
+          user => new User(user.name,user.email,'',user.img, user.role, user.google, user.uid));
+
+          return {
+            total: resp.total,
+            users
+          };
+      })
+    );
+           
+  }
+
+  deleteUser(user:User) {
+    
+    const url =`${ base_url }/users/${user.uid}`
+    return this.http.delete(url, this.headears);
+    
+  }
+
+  updateUserRole(user:User){
+    return this.http.put(`${ base_url}/users/${ user.uid}`, user, { headers: {'x-token': this.token }})
+  }
+  
 }

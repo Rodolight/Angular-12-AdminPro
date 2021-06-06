@@ -11,6 +11,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './maintenance/users/users.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent, canActivate:[AuthGuard], children: [
@@ -22,6 +23,9 @@ const routes: Routes = [
         {path: 'account-setting', component: AccountSettingsComponent, data:{title:'Tema'}},
         {path: 'rxjs', component: RxjsComponent , data:{title:'Rxjs'}},
         {path: 'profile', component: ProfileComponent , data:{title:'Perfil de usuario'}},
+
+        // Mantenimientos
+        {path: 'users', component: UsersComponent , data:{title:'Usuarios'}},
         ]
     },
   

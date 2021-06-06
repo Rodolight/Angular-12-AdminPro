@@ -11,7 +11,7 @@ declare function customInitFunction():any;
 })
 export class PagesComponent implements OnInit {
 
-
+  public year = new Date().getFullYear()
 
   constructor( private settingsService: SettingsService ){}
 

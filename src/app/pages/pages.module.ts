@@ -12,6 +12,8 @@ import { PagesComponent } from './pages.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './maintenance/users/users.component';
+import { PagesPipe } from '../pipes/pages.pipe';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { ProfileComponent } from './profile/profile.component';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
+    UsersComponent,
+    PagesPipe
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IncrementsComponent } from './increments/increments.component';
 import { DonusComponent } from './donus/donus.component';
 import { ChartsModule } from 'ng2-charts';
+import { ModalImageComponent } from './modal-image/modal-image.component';
 
 
 
@@ -12,7 +13,8 @@ import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     IncrementsComponent,
-    DonusComponent
+    DonusComponent,
+    ModalImageComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { ChartsModule } from 'ng2-charts';
   ],
   exports: [
     IncrementsComponent,
-    DonusComponent
+    DonusComponent,
+    ModalImageComponent
   ]
 })
 export class ComponentsModule { }
