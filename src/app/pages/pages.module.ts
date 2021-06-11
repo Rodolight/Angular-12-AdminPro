@@ -13,7 +13,10 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenance/users/users.component';
-import { PagesPipe } from '../pipes/pages.pipe';
+import { HospitalComponent } from './maintenance/hospital/hospital.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { DoctorComponent } from './maintenance/doctors/doctor.component';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { PagesPipe } from '../pipes/pages.pipe';
     RxjsComponent,
     ProfileComponent,
     UsersComponent,
-    PagesPipe
+    HospitalComponent,
+    DoctorsComponent,
+    DoctorComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +40,7 @@ import { PagesPipe } from '../pipes/pages.pipe';
     SharedsModule,
     AppRoutingModule,
     ComponentsModule,
+    PipesModule
   ],
   exports: [
     DashboardComponent,

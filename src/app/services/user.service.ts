@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
+import { EventEmitter, Injectable, NgZone } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap, map, catchError, delay } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 import { environment } from '../../environments/environment';
 
@@ -23,7 +22,8 @@ export class UserService {
 
   public auth2: any;
   public user!: User;
-
+  public newImage : EventEmitter<string> = new EventEmitter<string>();
+  
   constructor(private http: HttpClient,
               private router : Router,
               private zone: NgZone) { 

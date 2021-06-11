@@ -12,6 +12,9 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './maintenance/users/users.component';
+import { HospitalComponent } from './maintenance/hospital/hospital.component';
+import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { DoctorComponent } from './maintenance/doctors/doctor.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent, canActivate:[AuthGuard], children: [
@@ -25,7 +28,10 @@ const routes: Routes = [
         {path: 'profile', component: ProfileComponent , data:{title:'Perfil de usuario'}},
 
         // Mantenimientos
-        {path: 'users', component: UsersComponent , data:{title:'Usuarios'}},
+        {path: 'users', component: UsersComponent , data:{title:'Mantenimiento de Usuarios'}},
+        {path: 'hospitals', component: HospitalComponent , data:{title:'Mantenimiento de Hospitales'}},
+        {path: 'doctors', component: DoctorsComponent , data:{title:'Mantenimiento de Médicos'}},
+        {path: 'doctor/:id', component: DoctorComponent , data:{title:'Mantenimiento de Médicos'}},
         ]
     },
   

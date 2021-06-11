@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
 
 const base_ul = environment.base_url;
 
@@ -9,7 +10,7 @@ const base_ul = environment.base_url;
 
 export class FileUploadService {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   async updatePicture( fileToUp: File,
                         type : 'users'|'hospitals'|'doctors',
@@ -29,6 +30,10 @@ export class FileUploadService {
        const data = await resp.json();  
                          
        if(data.ok) {
+          if(this.userService.user.uid == id) {
+             this.userService.user.img = data.msg;
+             this.userService.newImage.emit(data.msg);
+          }
          return data.msg 
       } else {
         console.log(data.msg);

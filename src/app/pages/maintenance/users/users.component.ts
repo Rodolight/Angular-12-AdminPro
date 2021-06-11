@@ -96,7 +96,7 @@ export class UsersComponent implements OnInit , OnDestroy{
          this.getUsers();
         Swal.fire(
           'Usuario eliminado!',
-          `¡${ user.name } ha sido eliinado correctamente.!`,
+          `¡${ user.name } ha sido eliminado correctamente.!`,
           'success'
         )
        })
