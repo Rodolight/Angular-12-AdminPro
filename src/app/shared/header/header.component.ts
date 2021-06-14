@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
-import { delay } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit, OnDestroy  {
   public user! : User
   public imgSub! : Subscription;
 
-  constructor( private userService: UserService) { 
+  constructor( private userService: UserService,
+               private router: Router) { 
     this.user = userService.user
   }
 
@@ -28,6 +30,13 @@ export class HeaderComponent implements OnInit, OnDestroy  {
 
    logout(){
      this.userService.logout()
+   }
+
+   search(terms: string){
+     if(terms !== ''){
+      this.router.navigateByUrl(`/dashboard/search/${ terms }`)
+     }
+     
    }
 
 }
